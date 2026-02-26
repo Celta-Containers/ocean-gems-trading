@@ -31,7 +31,7 @@ const LanguageSwitcher = () => {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 text-hero-foreground/80 hover:text-hero-foreground text-sm font-medium transition-colors"
+        className="flex items-center gap-1.5 text-foreground/70 hover:text-foreground text-sm font-medium transition-colors"
         aria-label="Language"
       >
         <Globe size={16} />

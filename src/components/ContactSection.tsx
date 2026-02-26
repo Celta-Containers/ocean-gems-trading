@@ -5,19 +5,21 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useI18n } from "@/contexts/I18nContext";
 
 const ContactSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const { t } = useI18n();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      toast({ title: "Mensagem enviada!", description: "Entraremos em contato em breve." });
+      toast({ title: t.contact.toastTitle, description: t.contact.toastDesc });
       (e.target as HTMLFormElement).reset();
     }, 1000);
   };
@@ -31,18 +33,17 @@ const ContactSection = () => {
           className="text-center mb-16"
         >
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-3">
-            Contato
+            {t.contact.tag}
           </p>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4">
-            Fale Conosco
+            {t.contact.title}
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Solicite uma cotação ou tire suas dúvidas. Nossa equipe está pronta para atendê-lo.
+            {t.contact.subtitle}
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-5 gap-12 max-w-5xl mx-auto">
-          {/* Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -50,9 +51,9 @@ const ContactSection = () => {
             className="lg:col-span-2 space-y-8"
           >
             {[
-              { icon: Mail, label: "Email", value: "contato@stockstoragecorp.com" },
-              { icon: Phone, label: "Telefone", value: "+1 (555) 123-4567" },
-              { icon: MapPin, label: "Sede", value: "Miami, FL — EUA" },
+              { icon: Mail, label: t.contact.email, value: "contato@stockstoragecorp.com" },
+              { icon: Phone, label: t.contact.phone, value: "+1 (555) 123-4567" },
+              { icon: MapPin, label: t.contact.hq, value: "Miami, FL — USA" },
             ].map((item) => (
               <div key={item.label} className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
@@ -66,7 +67,6 @@ const ContactSection = () => {
             ))}
           </motion.div>
 
-          {/* Form */}
           <motion.form
             onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 30 }}
@@ -75,15 +75,15 @@ const ContactSection = () => {
             className="lg:col-span-3 bg-card rounded-xl p-8 border border-border shadow-sm space-y-5"
           >
             <div className="grid sm:grid-cols-2 gap-4">
-              <Input placeholder="Nome" required />
-              <Input placeholder="Email" type="email" required />
+              <Input placeholder={t.contact.namePh} required />
+              <Input placeholder={t.contact.emailPh} type="email" required />
             </div>
-            <Input placeholder="Empresa" />
-            <Textarea placeholder="Sua mensagem..." rows={5} required />
+            <Input placeholder={t.contact.companyPh} />
+            <Textarea placeholder={t.contact.messagePh} rows={5} required />
             <Button type="submit" variant="default" size="lg" className="w-full" disabled={loading}>
-              {loading ? "Enviando..." : (
+              {loading ? t.contact.sending : (
                 <>
-                  Enviar Mensagem <Send className="ml-2" size={16} />
+                  {t.contact.send} <Send className="ml-2" size={16} />
                 </>
               )}
             </Button>

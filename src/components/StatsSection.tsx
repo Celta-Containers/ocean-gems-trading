@@ -1,17 +1,18 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-
-const stats = [
-  { value: "15+", label: "Anos de Experiência" },
-  { value: "50+", label: "Países Atendidos" },
-  { value: "10K+", label: "Containers Negociados" },
-  { value: "500+", label: "Clientes Satisfeitos" },
-];
+import { useI18n } from "@/contexts/I18nContext";
 
 const StatsSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useI18n();
+
+  const stats = [
+    { value: "15+", label: t.stats.years },
+    { value: "50+", label: t.stats.countries },
+    { value: "10K+", label: t.stats.containers },
+    { value: "500+", label: t.stats.clients },
+  ];
 
   return (
     <section ref={ref} className="py-16 bg-steel-gradient">
@@ -19,7 +20,7 @@ const StatsSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
             <motion.div
-              key={stat.label}
+              key={i}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.15 }}

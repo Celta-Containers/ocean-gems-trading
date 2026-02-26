@@ -1,10 +1,12 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useI18n } from "@/contexts/I18nContext";
 import yardImg from "@/assets/containers-yard.jpg";
 
 const AboutSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useI18n();
 
   return (
     <section id="about" ref={ref} className="py-24 bg-background">
@@ -18,7 +20,7 @@ const AboutSection = () => {
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src={yardImg}
-                alt="Pátio de containers da Stock Storage Corp"
+                alt="Stock Storage Corp container yard"
                 className="w-full h-[420px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep/60 to-transparent" />
@@ -31,26 +33,15 @@ const AboutSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p className="text-primary font-medium tracking-widest uppercase text-sm mb-3">
-              Sobre nós
+              {t.about.tag}
             </p>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight">
-              Referência global em trading de containers marítimos
+              {t.about.title}
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                A <strong className="text-foreground">Stock Storage Corp.</strong> é uma empresa
-                especializada na compra e venda de containers marítimos, atuando em mais de 50
-                países com uma rede logística robusta e eficiente.
-              </p>
-              <p>
-                Com mais de 15 anos de experiência no mercado, oferecemos containers novos e
-                usados de alta qualidade, sempre seguindo rigorosos padrões internacionais de
-                inspeção e certificação.
-              </p>
-              <p>
-                Nossa missão é fornecer soluções ágeis e confiáveis para empresas de todos os
-                portes, garantindo o melhor custo-benefício em cada negociação.
-              </p>
+              {t.about.paragraphs.map((p, i) => (
+                <p key={i} dangerouslySetInnerHTML={{ __html: p.replace(/<strong>/g, '<strong class="text-foreground">') }} />
+              ))}
             </div>
           </motion.div>
         </div>

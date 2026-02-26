@@ -18,7 +18,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-hero/90 backdrop-blur-md border-b border-foreground/10">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-20 px-4">
         <a href="#hero" className="flex items-center gap-3">
           <img src={logo} alt="Stock Storage Corp" className="h-16 w-auto" />
@@ -30,7 +30,7 @@ const Header = () => {
             <a
               key={l.href}
               href={l.href}
-              className="text-hero-foreground/80 hover:text-hero-foreground text-sm font-medium transition-colors"
+              className="text-foreground/70 hover:text-foreground text-sm font-medium transition-colors"
             >
               {l.label}
             </a>
@@ -45,7 +45,7 @@ const Header = () => {
         <div className="flex md:hidden items-center gap-3">
           <LanguageSwitcher />
           <button
-            className="text-hero-foreground"
+            className="text-foreground"
             onClick={() => setOpen(!open)}
             aria-label="Menu"
           >
@@ -60,7 +60,7 @@ const Header = () => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="md:hidden bg-hero overflow-hidden"
+            className="md:hidden bg-background overflow-hidden"
           >
             <div className="flex flex-col gap-4 p-6">
               {navLinks.map((l) => (
@@ -68,7 +68,7 @@ const Header = () => {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="text-hero-foreground/80 hover:text-hero-foreground text-sm font-medium"
+                  className="text-foreground/70 hover:text-foreground text-sm font-medium"
                 >
                   {l.label}
                 </a>

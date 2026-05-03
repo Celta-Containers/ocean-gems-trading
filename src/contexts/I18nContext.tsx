@@ -21,7 +21,7 @@ type Translations = {
     send: string; sending: string;
     toastTitle: string; toastDesc: string;
   };
-  footer: { rights: string };
+  footer: { rights: string; partOf: string };
 };
 
 const translations: Record<Locale, Translations> = {
@@ -66,7 +66,7 @@ const translations: Record<Locale, Translations> = {
       send: "Enviar Mensagem", sending: "Enviando...",
       toastTitle: "Mensagem enviada!", toastDesc: "Entraremos em contato em breve.",
     },
-    footer: { rights: "Todos os direitos reservados." },
+    footer: { rights: "Todos os direitos reservados.", partOf: "Uma empresa do grupo" },
   },
   en: {
     nav: { home: "Home", services: "Services", about: "About", contact: "Contact", cta: "Request a Quote" },
@@ -109,7 +109,7 @@ const translations: Record<Locale, Translations> = {
       send: "Send Message", sending: "Sending...",
       toastTitle: "Message sent!", toastDesc: "We'll get back to you shortly.",
     },
-    footer: { rights: "All rights reserved." },
+    footer: { rights: "All rights reserved.", partOf: "A company of the" },
   },
   es: {
     nav: { home: "Inicio", services: "Servicios", about: "Nosotros", contact: "Contacto", cta: "Solicitar Cotización" },
@@ -152,7 +152,7 @@ const translations: Record<Locale, Translations> = {
       send: "Enviar Mensaje", sending: "Enviando...",
       toastTitle: "¡Mensaje enviado!", toastDesc: "Nos pondremos en contacto pronto.",
     },
-    footer: { rights: "Todos los derechos reservados." },
+    footer: { rights: "Todos los derechos reservados.", partOf: "Una empresa del grupo" },
   },
 };
 

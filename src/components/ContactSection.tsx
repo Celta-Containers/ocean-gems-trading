@@ -51,8 +51,8 @@ const ContactSection = () => {
             className="lg:col-span-2 space-y-8"
           >
             {[
-              { icon: Mail, label: t.contact.email, value: "contato@stockstoragecorp.com" },
-              { icon: Phone, label: t.contact.phone, value: "+1 (555) 123-4567" },
+              { icon: Mail, label: t.contact.email, value: "sales@stockstoragecontainers.com" },
+              { icon: Phone, label: t.contact.phone, value: "+1 (859) 217-6939" },
               { icon: MapPin, label: t.contact.hq, value: "Miami, FL — USA" },
             ].map((item) => (
               <div key={item.label} className="flex items-start gap-4">

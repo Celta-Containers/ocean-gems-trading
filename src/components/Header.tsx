@@ -21,7 +21,7 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-20 px-4">
         <a href="#hero" className="flex items-center gap-3">
-          <img src={logo} alt="Stock Storage Corp" className="h-16 w-auto" />
+          <img src={logo} alt="Stock Storage Corp" className="h-[70px] w-auto" />
         </a>
 
         {/* Desktop nav */}

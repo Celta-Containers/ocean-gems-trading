@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useI18n } from "@/contexts/I18nContext";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactSection = () => {
   const ref = useRef(null);
@@ -14,14 +15,38 @@ const ContactSection = () => {
   const [loading, setLoading] = useState(false);
   const { t } = useI18n();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    const form = e.target as HTMLFormElement;
+    const fd = new FormData(form);
+    const payload = {
+      name: String(fd.get("name") || ""),
+      email: String(fd.get("email") || ""),
+      company: String(fd.get("company") || ""),
+      message: String(fd.get("message") || ""),
+    };
+    try {
+      const { error } = await supabase.functions.invoke("send-transactional-email", {
+        body: {
+          templateName: "contact-form-notification",
+          recipientEmail: "sales@stockstoragecontainers.com",
+          idempotencyKey: `contact-${crypto.randomUUID()}`,
+          templateData: payload,
+        },
+      });
+      if (error) throw error;
       toast({ title: t.contact.toastTitle, description: t.contact.toastDesc });
-      (e.target as HTMLFormElement).reset();
-    }, 1000);
+      form.reset();
+    } catch (err) {
+      toast({
+        title: "Error",
+        description: "Could not send your message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -75,11 +100,11 @@ const ContactSection = () => {
             className="lg:col-span-3 bg-card rounded-xl p-8 border border-border shadow-sm space-y-5"
           >
             <div className="grid sm:grid-cols-2 gap-4">
-              <Input placeholder={t.contact.namePh} required />
-              <Input placeholder={t.contact.emailPh} type="email" required />
+              <Input name="name" placeholder={t.contact.namePh} required />
+              <Input name="email" placeholder={t.contact.emailPh} type="email" required />
             </div>
-            <Input placeholder={t.contact.companyPh} />
-            <Textarea placeholder={t.contact.messagePh} rows={5} required />
+            <Input name="company" placeholder={t.contact.companyPh} />
+            <Textarea name="message" placeholder={t.contact.messagePh} rows={5} required />
             <Button type="submit" variant="default" size="lg" className="w-full" disabled={loading}>
               {loading ? t.contact.sending : (
                 <>

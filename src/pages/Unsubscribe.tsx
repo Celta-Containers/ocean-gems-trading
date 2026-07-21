@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -46,6 +47,14 @@ const Unsubscribe = () => {
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-section-gradient px-4">
+      <Helmet>
+        <title>Unsubscribe | Stock Storage Corp</title>
+        <meta name="description" content="Unsubscribe from Stock Storage Corp email communications." />
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href="https://ocean-gems-trading.lovable.app/unsubscribe" />
+        <meta property="og:title" content="Unsubscribe | Stock Storage Corp" />
+        <meta property="og:url" content="https://ocean-gems-trading.lovable.app/unsubscribe" />
+      </Helmet>
       <div className="bg-card border border-border rounded-xl shadow-sm p-8 max-w-md w-full text-center">
         {status === "loading" && (
           <>

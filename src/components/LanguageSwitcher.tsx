@@ -32,7 +32,9 @@ const LanguageSwitcher = () => {
       <button
         onClick={() => setOpen(!open)}
         className="flex items-center gap-1.5 text-foreground/70 hover:text-foreground text-sm font-medium transition-colors"
-        aria-label="Language"
+        aria-label={`Change language, current language ${labels[locale]}`}
+        aria-haspopup="listbox"
+        aria-expanded={open}
       >
         <Globe size={16} />
         <span className="hidden sm:inline">{flags[locale]}</span>

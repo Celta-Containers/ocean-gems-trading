@@ -100,11 +100,11 @@ const ContactSection = () => {
             className="lg:col-span-3 bg-card rounded-xl p-8 border border-border shadow-sm space-y-5"
           >
             <div className="grid sm:grid-cols-2 gap-4">
-              <Input name="name" placeholder={t.contact.namePh} required />
-              <Input name="email" placeholder={t.contact.emailPh} type="email" required />
+              <Input name="name" placeholder={t.contact.namePh} aria-label={t.contact.namePh} required />
+              <Input name="email" placeholder={t.contact.emailPh} aria-label={t.contact.emailPh} type="email" required />
             </div>
-            <Input name="company" placeholder={t.contact.companyPh} />
-            <Textarea name="message" placeholder={t.contact.messagePh} rows={5} required />
+            <Input name="company" placeholder={t.contact.companyPh} aria-label={t.contact.companyPh} />
+            <Textarea name="message" placeholder={t.contact.messagePh} aria-label={t.contact.messagePh} rows={5} required />
             <Button type="submit" variant="default" size="lg" className="w-full" disabled={loading}>
               {loading ? t.contact.sending : (
                 <>

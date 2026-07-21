@@ -1,0 +1,13 @@
+# Stock Storage Corp
+
+> Global maritime container trading company — buys and sells new and used shipping containers in more than 50 countries, with integrated logistics, inspection, and expert consulting.
+
+Stock Storage Corp is part of the Total Storage group. The company serves businesses of all sizes with container sales, purchases, worldwide operations, quality inspection, delivery logistics, and specialist consulting.
+
+## Pages
+
+- [Home](/): Company overview, services, stats, about, and contact form.
+
+## Optional
+
+- [Unsubscribe](/unsubscribe): Email unsubscribe page.

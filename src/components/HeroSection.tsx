@@ -10,7 +10,15 @@ const HeroSection = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroImg} alt="" className="w-full h-full object-cover" />
+        <img
+          src={heroImg}
+          alt="Container ship carrying maritime shipping containers at sea"
+          width={1920}
+          height={1080}
+          fetchPriority="high"
+          decoding="async"
+          className="w-full h-full object-cover"
+        />
         <div className="absolute inset-0 bg-hero-gradient opacity-85" />
       </div>
 
@@ -31,6 +39,7 @@ const HeroSection = () => {
             transition={{ delay: 0.35 }}
             className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-hero-foreground leading-tight mb-6"
           >
+            <span className="sr-only">Stock Storage Corp — Global Maritime Container Trading. </span>
             {t.hero.title1}{" "}
             <span className="text-gradient">{t.hero.titleHighlight}</span>{" "}
             {t.hero.title2}
